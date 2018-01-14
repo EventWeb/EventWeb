@@ -1,15 +1,19 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<?php require('partials/html-head.php'); ?>
+    <?php require('partials/html-head.php'); ?>
 </head>
 <body>
 	<?php require('partials/header.php'); ?>
 	<div class="register_page">
         <img src="images/register.png" alt="signup image">
-        <form method="post" action="register.html">
+        <form method="post" action="signup.php">
+            <!-- display validation message-->
+            <?php include('errors.php');?>
+            <!-- display ends-->
             <div class="register_form">
-                <input type="text" name=username required autocomplete="off">
+                <input type="text" name="username" required autocomplete="off">
                 <label>Username</label>
             </div>
             <div class="register_form">
@@ -17,18 +21,22 @@
                 <label>E-mail</label>
             </div>
             <div class="register_form">
-                <input type="password" name="fPass" required>
+                <input type="password" name="password_1" required>
                 <label>Password</label>
             </div>
             <div class="register_form">
-                <input type="password" name="sPass" required>
+                <input type="password" name="password_2" required>
                 <label>Confirm Password</label>
             </div>
-
-            <input type="submit" name="btn_register" value="Register">
+            <div class="register_form_btn">
+                <button type="submit" class = "btn" name="reg_user"> Register </button>
+            </div>
+            <div class="form_footer">
+                Have account already? Login <a href="login.php">here</a>
+            </div>
         </form>
-        <a href="index.html">Have account already?</a>
     </div>
+
 	<?php require('partials/footer.php'); ?>
 	<script src="js/script.js"></script>
 </body>
