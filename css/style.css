@@ -1,3 +1,76 @@
 body {
 	font-family: 'Roboto', sans-serif;
 }
+
+.register_page {
+    width: 500px;
+    height: 480px;
+    position: absolute;
+    font-family: Roboto, sans-serif;
+    background-color: rgba(163, 205, 248, 0.7);
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(10%, -42%);
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.register_page img {
+    width: 180px;
+    height: 180px;
+    margin-top: -130px;
+    margin-bottom: 30px;
+    margin-left: 125px;
+}
+
+.register_page .register_form {
+    position: relative;
+}
+
+.register_page .register_form input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.register_page .register_form label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.register_page .register_form input:focus~label,
+.register_page .register_form input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
+}
+
+.register_page input[type="submit"] {
+    background: transparent;
+    outline: none;
+    padding: 15px 25px;
+    color: #ffffff;
+    background-color: rgb(4, 122, 53);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register_page input[type="submit"]:focus {
+    background-color: rgb(1, 58, 15);
+}
