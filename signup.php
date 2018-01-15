@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,15 @@
             </div>
         </form>
     </div>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<?php require('partials/html-head.php'); ?>
+</head>
+<body>
+	<?php require('partials/header.php'); ?>
+>>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
 
 	<?php require('partials/footer.php'); ?>
 	<script src="js/script.js"></script>
