@@ -32,13 +32,16 @@ foreach ($events as $event) {
 		array_push($pastEvents, $event);
 	}
 }
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<?php require('partials/html-head.php'); ?>
 	<style>
 		.well {
+			cursor: pointer;
 			margin-bottom: 0;
 		}
 	</style>
@@ -58,7 +61,7 @@ foreach ($events as $event) {
 					<h1>Upcoming Events</h1>
 					<div class="row">
 						<?php foreach ($upcomingEvents as $event) { ?>
-							<div class="col-sm-4 well">
+							<div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
 								<h4><?php echo $event['name']; ?></h4>
 								<p>By: <?php echo $event['organizer']; ?></p>
 								<p>Date: <?php echo $event['date']; ?></p>
@@ -72,7 +75,7 @@ foreach ($events as $event) {
 					<h1>Past Events</h1>
 					<div class="row">
 						<?php foreach ($pastEvents as $event) { ?>
-							<div class="col-sm-4 well">
+							<div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
 								<h4><?php echo $event['name']; ?></h4>
 								<p>By: <?php echo $event['organizer']; ?></p>
 								<p>Date: <?php echo $event['date']; ?></p>
@@ -82,6 +85,29 @@ foreach ($events as $event) {
 					</div>
 				</div>
 			</div>				
+		</div>
+	</div>
+
+	<div id="eventModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>By: <span class="event-organizer"></span></p>
+					<p>Time: <span class="event-time"></span></p>
+					<p>Date: <span class="event-date"></span></p>
+					<p>Venue: <span class="event-venue"></span></p>
+					<p>Description: <span class="event-description"></span></p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
