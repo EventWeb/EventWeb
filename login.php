@@ -1,3 +1,4 @@
+<?php include('server.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
     <div class="login_page">
         <img src="images/profile.png" alt="profile icon">
         <form method="post" action="home.html">
+        <?php include ('errors.php'); ?>
             <div class="login_form">
                 <input type="text" name="username" required autocomplete="off" autofocus>
                 <label>Username</label>
