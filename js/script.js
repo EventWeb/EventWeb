@@ -8,7 +8,7 @@ for (var i = 0; i < links.length; i++) {
 
 var filename = window.location.pathname;
 if (filename === '/events.php') {
-	var setEventModal = function(eventName, eventDetail) {
+	function setEventModal(eventName, eventDetail) {
 		var modalContent = document.getElementsByClassName('modal-content')[0];
 		modalContent.getElementsByClassName('modal-title')[0].textContent = eventName;
 		if (eventDetail === 'ERROR: No such event.') {
@@ -21,7 +21,7 @@ if (filename === '/events.php') {
 		modalContent.getElementsByClassName('event-description')[0].textContent = eventDetail['description'];
 	};
 
-	var eventWellHandler = function(e) {
+	function eventWellHandler(e) {
 		// Get event name
 		var eventName;
 		if (e.target.classList.contains('well')) {
