@@ -22,7 +22,7 @@ if (filename === '/events.php') {
 		}
 
 		// Inputs
-		if (isEventEnded) { // Hide going button
+		if (isEventEnded || eventDetail === 'ERROR: No such event.') { // Hide going button
 			modalContent.getElementsByClassName('going-btn')[0].classList.add('hidden');
 		} else { // Show going button
 			modalContent.getElementsByClassName('input-event-name')[0].value = eventName;
