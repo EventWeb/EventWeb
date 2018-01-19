@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['username'] = 'john'; // Temporary hardcoded
 
 // Connect to database
 $config = require('config.php');
@@ -51,11 +53,20 @@ foreach ($events as $event) {
 
 	<div class="container">
 		<div class="row">
+			<?php if (isset($_SESSION['eventAttendanceMessage'])) { ?>
+				<div class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Success!</strong> <?php echo $_SESSION['eventAttendanceMessage']; ?>
+				</div>
+			<?php } ?>
+			<?php unset($_SESSION['eventAttendanceMessage']); ?>
+
 			<ul class="nav nav-pills nav-stacked col-sm-2">
 				<li class="active"><a href="#upcoming" data-toggle="pill">Upcoming Events</a></li>
 				<li><a href="#past" data-toggle="pill">Past Events</a></li>
 			</ul>
 
+			
 			<div class="tab-content col-sm-10">
 				<div class="tab-pane active" id="upcoming">
 					<h1>Upcoming Events</h1>
@@ -93,7 +104,7 @@ foreach ($events as $event) {
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
+					<h4 class="modal-title"></h4>
 				</div>
 
 				<div class="modal-body">
@@ -105,7 +116,12 @@ foreach ($events as $event) {
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<form method="POST" action="api.php">
+						<input type="hidden" name="eventName" class="input-event-name">
+						<input type="hidden" name="eventAttendance" class="input-attendance">
+						<input type="submit" name="" value="&#10004; Going" class="btn going-btn">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</form>
 				</div>
 			</div>
 		</div>

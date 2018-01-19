@@ -110,7 +110,7 @@ foreach ($events as $event) {
 				</div>
 
 				<div class="modal-body">
-					<p>Number of attendees: <span class="attendees-count"></span></p>
+					<p>Total attendees: <span class="attendees-count"></span></p>
                     
                     <div class="panel-group">
                       <div class="panel panel-default">
