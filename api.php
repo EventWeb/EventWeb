@@ -9,7 +9,23 @@ try {
 	die($e->getMessage());
 }
 
-if (isset($_GET['eventName'])) {
+if (isset($_GET['eventAttendees']) && $_GET['eventAttendees'] && isset($_GET['eventName'])) {
+    $sql = 'SELECT user.name 
+            FROM participation 
+            INNER JOIN user ON participation.user_id = user.id
+            WHERE event_id = (SELECT id FROM event WHERE name = :name)';
+    $stmt = $pdo->prepare($sql);
+	$stmt->execute(['name' => $_GET['eventName']]);
+	$attendees = $stmt->fetchAll();
+    
+    if ($attendees) {
+		echo json_encode($attendees);	
+	} else {
+		echo "ERROR: No such event.";
+	}
+    
+    
+} else if (isset($_GET['eventName'])) {
 	// Retrieve event details based on event name
 	$sql = 'SELECT event.description, event.date, event.time, event.venue, user.name AS organizer
 		FROM event
@@ -25,4 +41,4 @@ if (isset($_GET['eventName'])) {
 	} else {
 		echo "ERROR: No such event.";
 	}
-}
+} 

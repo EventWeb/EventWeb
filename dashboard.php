@@ -62,7 +62,7 @@ foreach ($events as $event) {
             <div class="tab-pane active" id="upcoming">
                 <div class="row">
                     <?php foreach ($myUpcomingEvents as $event) { ?>
-                        <div class="col-sm-4 well">
+                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
@@ -73,10 +73,10 @@ foreach ($events as $event) {
                 </div>
             </div>
 
-            <div class="tab-pane" id="past">
+            <div class="tab-pane" id="past" >
                 <div class="row">
                     <?php foreach ($myPastEvents as $event) { ?>
-                        <div class="col-sm-4 well">
+                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
@@ -89,7 +89,7 @@ foreach ($events as $event) {
             <div class="tab-pane" id="own">
                 <div class="row">
                     <?php foreach ($myOwnEvents as $event) { ?>
-                        <div class="col-sm-4 well">
+                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
@@ -100,6 +100,39 @@ foreach ($events as $event) {
             </div>
         </div>
     </div>
+    
+    <div id="eventModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>Number of attendees: <span class="attendees-count"></span></p>
+                    
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Attendees</a>
+                          </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                          <ul class="list-group" id="attendees_list">
+                            <!-- <li> items go here -->
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+				</div>
+
+			</div>
+		</div>
+	</div>
+    
 	<?php require('partials/footer.php'); ?>
     
 	<script src="js/script.js"></script>
