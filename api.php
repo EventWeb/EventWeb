@@ -10,7 +10,7 @@ try {
 	die($e->getMessage());
 }
 
-if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] === "true" && isset($_POST['eventName'])) {
+if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST['eventName'])) {
     $sql = 'SELECT user.name 
             FROM participation 
             INNER JOIN user ON participation.user_id = user.id

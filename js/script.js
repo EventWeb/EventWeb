@@ -84,19 +84,13 @@ if (filename === '/events.php') {
 			return;
 		}
         modalContent.getElementsByClassName('attendees-count')[0].textContent = attendees.length;
-        // Get UL.
-        // Remove all previous children.
+        
         var ul = document.getElementById('attendees_list');
-        while (ul.firstChild) {
-            ul.removeChild(ul.firstChild);
-        }
-        // Append new li children.
+        var list = "";
         for (var i = 0; i < attendees.length; i++) {
-            var li = document.createElement('li');
-            li.appendChild(document.createTextNode(attendees[i]['name']));
-            li.className = "list-group-item";
-            ul.appendChild(li);
+            list += "<li class='list-group-item'>" + attendees[i]['name'] + "</li>";
         }
+        ul.innerHTML = list;
 	};
 
 	function eventWellHandler(e) {
@@ -120,7 +114,6 @@ if (filename === '/events.php') {
 
 		xhr.onload = function() {
 			if (xhr.status === 200) {
-                console.log(xhr.responseText);
 				setEventModal(eventName, JSON.parse(xhr.responseText));
 			} else {
 				console.log('Request failed.  Returned status of ' + xhr.status);
