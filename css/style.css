@@ -5,51 +5,52 @@
 }
 
 body {
-<<<<<<< HEAD
-	font-family: 'Roboto', sans-serif;
-}
-
-.register_page {
-    width: 500px;
-    height: 480px;
-=======
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
 }
 
-.login_page {
+.register_page {
     width: 500px;
-    height: 400px;
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
+    height: 500px;
     position: absolute;
     font-family: Roboto, sans-serif;
     background-color: rgba(163, 205, 248, 0.7);
     border-radius: 10px;
     top: 50%;
-<<<<<<< HEAD
-    transform: translate(100%, -35%);
-=======
     transform: translate(78%, -35%);
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
     padding: 40px;
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
+.login_page {
+    width: 500px;
+    height: 400px;
+    position: absolute;
+    font-family: Roboto, sans-serif;
+    background-color: rgba(163, 205, 248, 0.7);
+    border-radius: 10px;
+    top: 50%;
+    transform: translate(78%, -35%);
+    padding: 40px;
+    box-sizing: border-box;
+}
+
 .register_page img {
     width: 180px;
     height: 180px;
-=======
-.login_page img {
-    width: 190px;
-    height: 190px;
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
     margin-top: -130px;
     margin-bottom: 30px;
     margin-left: 125px;
 }
 
-<<<<<<< HEAD
+.login_page img {
+    width: 190px;
+    height: 190px;
+    margin-top: -130px;
+    margin-bottom: 30px;
+    margin-left: 125px;
+}
+
 .register_page .register_form {
     position: relative;
 }
@@ -60,7 +61,13 @@ body {
     font-size: 18px;
     color: #fff;
     margin-bottom: 20px;
-=======
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
 .login_page .login_form {
     position: relative;
     margin-top: -20px;
@@ -73,7 +80,6 @@ body {
     font-size: 18px;
     color: #fff;
     margin-bottom: 25px;
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
     border: none;
     letter-spacing: 1px;
     border-bottom: 1px solid #fff;
@@ -81,62 +87,71 @@ body {
     background: transparent;
 }
 
-<<<<<<< HEAD
 .register_page .register_form label {
     position: absolute;
     top: 0;
     left: 0;
     padding: 10px 0;
     font-size: 20px;
-=======
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+
+}
+
 .login_page .login_form label {
     position: absolute;
     top: 0;
     left: 0;
     padding: 15px 0;
     font-size: 22px;
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
     color: #fff;
     pointer-events: none;
     transition: .5s;
 }
 
-<<<<<<< HEAD
 .register_page .register_form input:focus~label,
 .register_page .register_form input:valid~label {
-=======
+        top: -20px;
+        left: 0;
+        color: #1178a8;
+        font-size: 15px;
+}
+    
 .login_page .login_form input:focus~label,
 .login_page .login_form input:valid~label {
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
     top: -20px;
     left: 0;
     color: #1178a8;
     font-size: 15px;
 }
 
-<<<<<<< HEAD
 .btn {
-    background: transparent;
-    outline: none;
-    padding: 15px 25px;
-    color: #ffffff;
     background-color: rgb(4, 122, 53);
     border: none;
-    border-radius: 5px;
+    color: #ffffff;
     cursor: pointer;
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 5px;
 }
-
-.btn:focus {
+.btn:hover {
     background-color: rgb(1, 58, 15);
+    color: #fff;
 }
 
-.form_footer {
+.form_footer_reg {
     font-size: 1em;
     padding: 1em 0;
-=======
+    text-align: center;
+}
+
 .login_page input[type="submit"] {
     background: #f16272;
     border: none;
@@ -159,8 +174,7 @@ body {
 
 .form_footer {
     font-size: 1.11em;
-    padding: 2em 0;
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
+    padding: 1em 0;
     text-align: center;
 }
 
@@ -172,9 +186,17 @@ body {
 
 .form_footer a:hover {
     border-bottom: 1px dotted #8c8c8c;
-<<<<<<< HEAD
 }
-/*
+
+.form_footer_reg a {
+    text-decoration: none;
+    transition: border-color 0.3s;
+}
+
+.form_footer_reg a:hover {
+    border-bottom: 1px dotted #8c8c8c;
+}
+
 .error {
 	width: 92%; 
 	margin: 0px auto; 
@@ -191,7 +213,4 @@ body {
 	background: #dff0d8; 
 	border: 1px solid #3c763d;
 	margin-bottom: 20px;
-}*/
-=======
 }
->>>>>>> 8bd8348257fd776cb3a344fdec18eddd9030fb42
