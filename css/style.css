@@ -1,10 +1,15 @@
-* {
-    margin: 0;
-    border: 0;
-    padding: 0;
+html {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
 }
 
-body {
+.login {
+    background: url(images/bg.png) no-repeat center center fixed;
+}
+
+.loginBody {
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
 }
@@ -23,14 +28,14 @@ body {
 }
 
 .login_page {
-    width: 500px;
-    height: 400px;
-    position: absolute;
+    width: 50%;
+    height: 50%;
+    position: relative;
     font-family: Roboto, sans-serif;
     background-color: rgba(163, 205, 248, 0.7);
     border-radius: 10px;
-    top: 50%;
-    transform: translate(78%, -35%);
+    left: 25%;
+    margin-top: 8%;
     padding: 40px;
     box-sizing: border-box;
 }
@@ -44,11 +49,15 @@ body {
 }
 
 .login_page img {
-    width: 190px;
-    height: 190px;
-    margin-top: -130px;
-    margin-bottom: 30px;
-    margin-left: 125px;
+    width: 40%;
+    height: 40%;
+    margin-top: -150px;
+    margin-left: 30%;
+    margin-bottom: 5%;
+}
+
+.login_title p {
+    visibility: hidden;
 }
 
 .register_title p {
@@ -100,7 +109,6 @@ body {
     color: #fff;
     pointer-events: none;
     transition: .5s;
-
 }
 
 .login_page .login_form label {
@@ -116,12 +124,12 @@ body {
 
 .register_page .register_form input:focus~label,
 .register_page .register_form input:valid~label {
-        top: -20px;
-        left: 0;
-        color: #1178a8;
-        font-size: 15px;
+    top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
 }
-    
+
 .login_page .login_form input:focus~label,
 .login_page .login_form input:valid~label {
     top: -20px;
@@ -177,12 +185,6 @@ body {
     background: #f13349;
 }
 
-.form_footer {
-    font-size: 1.11em;
-    padding: 1em 0;
-    text-align: center;
-}
-
 .form_footer_reg a {
     text-decoration: none;
     transition: border-color 0.3s;
@@ -200,7 +202,7 @@ body {
     width: 100%;
 }
 
-.custom_success {
+.custome_success {
     color: #3c763d;
     background: #dff0d8;
     border: 1px solid #3c763d;
@@ -208,7 +210,8 @@ body {
 }
 
 @media screen and (max-width: 767.5px) {
-    .register_page {
+    .register_page,
+    .login_page {
         width: 70%;
         height: 50%;
         position: relative;
@@ -221,15 +224,21 @@ body {
         padding: 40px;
         box-sizing: border-box;
     }
-    .register_page img {
+
+    .register_page img,
+    .login_page img {
         display: none;
     }
-    .register_title {
+
+    .register_title,
+    .login_title {
         margin-top: -60px;
         margin-bottom: 15%;
         text-align: center;
     }
-    .register_title p {
+
+    .register_title p, 
+    .login_title p {
         visibility: visible;
         font-size: 150%;
         font-family: 'Raleway', sans-serif;
