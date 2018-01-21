@@ -55,6 +55,9 @@ foreach ($events as $event) {
     .well {
         margin-bottom: 0;
     }
+    .well-own-event {
+        cursor: pointer;
+    }
 	</style>
 </head>
 <body>
@@ -96,7 +99,7 @@ foreach ($events as $event) {
             <div class="tab-pane" id="own">
                 <div class="row">
                     <?php foreach ($myOwnEvents as $event) { ?>
-                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
+                        <div class="col-sm-4 well well-own-event" data-toggle="modal" data-target="#eventModal">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
@@ -123,7 +126,7 @@ foreach ($events as $event) {
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Attendees</a>
+                            <a data-toggle="collapse" href="#collapse1">Attendees  <span class="glyphicon glyphicon-hand-left"></span></a>
                           </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse">
