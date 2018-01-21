@@ -83,7 +83,7 @@ else if (isset($_POST['eventName']) && isset($_POST['eventDescription']) && isse
 	$stmt->execute([
 		'name' => $_POST['eventName'],
 		'description' => $_POST['eventDescription'],
-		'date' => date("Y-m-d", strtotime($_POST['eventTime'])),
+		'date' => date("Y-m-d", strtotime($_POST['eventDate'])),
 		'time' => $_POST['eventTime'],
 		'venue' => $_POST['eventVenue'],
 		'username' => $_SESSION['username']
