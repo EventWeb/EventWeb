@@ -10,28 +10,23 @@ try {
 	die($e->getMessage());
 }
 
-// Retrieve events and their organizers         
-$sql = 'SELECT id FROM user WHERE name = :name';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['name' => $_SESSION['username']]);
-$id = $stmt->fetch()["id"];
-
+// Retrieve events that user is joining or had joined        
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
         FROM event
-        INNER JOIN participation ON event.id = event_id
+        INNER JOIN participation ON event.id = participation.event_id
         INNER JOIN user ON event.user_id = user.id
-        WHERE participation.user_id = :id';
-        
+        WHERE participation.user_id = (SELECT id FROM user WHERE name = :name)';
 $stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $id]);
+$stmt->execute(['name' => $_SESSION['username']]);
 $events = $stmt->fetchAll();   
 
+// Retrieve events that user has created
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
 	FROM event
 	INNER JOIN user ON event.user_id = user.id
-    WHERE user.id = :id';
+    WHERE user.id = (SELECT id FROM user WHERE name = :name)';
 $stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $id]);
+$stmt->execute(['name' => $_SESSION['username']]);
 $myOwnEvents = $stmt->fetchAll();
 
 // Separate events into upcoming and past
