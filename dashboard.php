@@ -10,32 +10,51 @@ try {
 	die($e->getMessage());
 }
 
-// Retrieve events and their organizers
+// Retrieve events and their organizers         
+$sql = 'SELECT id FROM user WHERE name = :name';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['name' => $_SESSION['username']]);
+$id = $stmt->fetch()["id"];
+
+$sql = 'SELECT event_id
+            FROM participation 
+            WHERE user_id = :id';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['id' => $id]);
+$attended_events = $stmt->fetchAll();   
+
+$sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
+        FROM event
+        INNER JOIN participation ON event.id = event_id
+        INNER JOIN user ON event.user_id = user.id
+        WHERE participation.user_id = :id';
+        
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['id' => $id]);
+$events = $stmt->fetchAll();   
+
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
 	FROM event
-	INNER JOIN user ON event.user_id = user.id';
+	INNER JOIN user ON event.user_id = user.id
+    WHERE user.id = :id';
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
-$events = $stmt->fetchAll();
+$stmt->execute(['id' => $id]);
+$myOwnEvents = $stmt->fetchAll();
 
 // Separate events into upcoming and past
 $myUpcomingEvents = [];
 $myPastEvents = [];
-$myOwnEvents = [];
 
 foreach ($events as $event) {
 	// Convert 00:00:00 to 00:00 AM/PM
 	$event['time'] = date('h:i A', strtotime($event['time']));
-
-	// Check whether event's datetime >= today 
+    
+ 	// Check whether event's datetime >= today 
 	if (date('Y-m-d H:i:s', strtotime($event['date'] . ' ' . $event['time'])) >= date('Y-m-d H:i:s')) {
-		array_push($myUpcomingEvents, $event);
+ 		array_push($myUpcomingEvents, $event);
 	} else {
-		array_push($myPastEvents, $event);
+ 		array_push($myPastEvents, $event);
 	}
-    if ($event['organizer'] == $_SESSION['username']) {
-        array_push($myOwnEvents, $event);
-    }
 }
 
 ?>
@@ -62,7 +81,7 @@ foreach ($events as $event) {
             <div class="tab-pane active" id="upcoming">
                 <div class="row">
                     <?php foreach ($myUpcomingEvents as $event) { ?>
-                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
+                        <div class="col-sm-4 well">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
@@ -76,7 +95,7 @@ foreach ($events as $event) {
             <div class="tab-pane" id="past" >
                 <div class="row">
                     <?php foreach ($myPastEvents as $event) { ?>
-                        <div class="col-sm-4 well" data-toggle="modal" data-target="#eventModal">
+                        <div class="col-sm-4 well">
                             <h4><?php echo $event['name']; ?></h4>
                             <p>By: <?php echo $event['organizer']; ?></p>
                             <p>Date: <?php echo $event['date']; ?></p>
