@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = "john";
+//$_SESSION['username'] = "john";
 // Connect to database
 $config = require('config.php');
 $dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];

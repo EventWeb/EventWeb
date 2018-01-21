@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = 'john'; // Temporary hardcoded
+//$_SESSION['username'] = 'john'; // Temporary hardcoded
 ?>
 <!DOCTYPE html>
 <html>
