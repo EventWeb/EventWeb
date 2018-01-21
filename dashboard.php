@@ -16,13 +16,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['name' => $_SESSION['username']]);
 $id = $stmt->fetch()["id"];
 
-$sql = 'SELECT event_id
-            FROM participation 
-            WHERE user_id = :id';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $id]);
-$attended_events = $stmt->fetchAll();   
-
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
         FROM event
         INNER JOIN participation ON event.id = event_id
