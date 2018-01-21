@@ -1,6 +1,11 @@
 <?php
 session_start();
-$_SESSION['username'] = "john";
+
+// Redirect guest to login page
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+}
+
 // Connect to database
 $config = require('config.php');
 $dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
