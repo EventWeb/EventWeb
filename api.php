@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION['username'] = 'john'; // Temporary hardcoded
+
 // Connect to database
 $config = require('config.php');
 $dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
@@ -10,6 +11,7 @@ try {
 	die($e->getMessage());
 }
 
+// for dashboard.php
 if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST['eventName'])) {
     $sql = 'SELECT user.name 
             FROM participation 
@@ -24,9 +26,10 @@ if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST[
 	} else {
 		echo "ERROR: No such event.";
 	}
-    
-    
-} else if (isset($_GET['eventName'])) {
+}
+
+// for events.php
+else if (isset($_GET['eventName'])) {
 	// Retrieve event details based on event name
 	$sql = 'SELECT event.id, event.description, event.date, event.time, event.venue, user.name AS organizer
 		FROM event
@@ -52,7 +55,8 @@ if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST[
 	} else {
 		echo json_encode("ERROR: No such event.");
 	}
-} else if (isset($_POST['eventName']) && isset($_POST['eventAttendance'])) {
+} 
+else if (isset($_POST['eventName']) && isset($_POST['eventAttendance'])) {
 	if ($_POST['eventAttendance'] === 'true') { // User doesn't want to attend, remove row
 		$_SESSION['eventAttendanceMessage'] = 'You have choose to not attend ' . $_POST['eventName'] . '.';
 		$sql = 'DELETE FROM participation
@@ -69,4 +73,26 @@ if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST[
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(['eventname' => $_POST['eventName'], 'username' => $_SESSION['username']]);
 	header('location: events.php');
+}
+
+// for create-event.php
+else if (isset($_POST['eventName']) && isset($_POST['eventDescription']) && isset($_POST['eventDate']) && isset($_POST['eventTime']) && isset($_POST['eventVenue'])) {
+	$sql = 'INSERT INTO event (name, description, date, time, venue, user_id)
+		VALUES (:name, :description, :date, :time, :venue, (SELECT id FROM user WHERE name = :username))';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([
+		'name' => $_POST['eventName'],
+		'description' => $_POST['eventDescription'],
+		'date' => date("Y-m-d", strtotime($_POST['eventTime'])),
+		'time' => $_POST['eventTime'],
+		'venue' => $_POST['eventVenue'],
+		'username' => $_SESSION['username']
+	]);
+	$_SESSION['createEventMessage'] = $_POST['eventName'] . ' is created.';
+	header('location: create-event.php');
+}
+
+// for undefined behaviour
+else {
+	header('location: home.php');
 }
