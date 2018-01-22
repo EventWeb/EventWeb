@@ -1,5 +1,7 @@
 <?php 
     session_start();
+
+    // Connect to database
     $config = require('config.php');
     $dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
     try {
@@ -12,13 +14,14 @@
 	$username = "";
 	$email    = "";
 	$errors = array(); 
-    $_SESSION['success'] = "";
 
     // LOGIN USER
 	if (isset($_POST['login_user'])) {
+        // receive all input from the form
 		$username = (isset($_POST['username']) ? $_POST['username'] : null);
         $password = (isset($_POST['password']) ? $_POST['password'] : null);
 
+        // form validation: ensure that the form is filled
 		if (empty($username)) {
 			array_push($errors, "Username is required");
 		}
@@ -26,22 +29,28 @@
 			array_push($errors, "Password is required");
 		}
 
+        // login user if there are no errors in the form
 		if (count($errors) == 0) {
             //get user/password combination from db
             $sql = "SELECT password FROM user WHERE name='$username'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $pw = $stmt->fetchAll();
-            $hash = $pw['0']['password'];
-
-            if (password_verify($password, $hash)) {
-                echo "<script>window.prompt('Login Successful');</script>";
-                $_SESSION['username'] = $username;
-                $_SESSION['success'] = "You are now logged in.";
-                header('location: home.php');
-			}else {
-				array_push($errors, "Wrong username/password combination");
-			}
+            $count_pw = count($pw);
+            
+            if ($count_pw>0){
+                $hash = $pw['0']['password'];
+                //verify password
+                if (password_verify($password, $hash)) {
+                    $_SESSION['username'] = $username;
+                    header('location: home.php');
+                }else {
+                    array_push($errors, "Wrong username/password combination");
+                }
+            }
+            else {
+                array_push($errors, "Wrong username/password combination");
+            }
 		}
 	}
 ?>
