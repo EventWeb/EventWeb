@@ -1,6 +1,11 @@
 <?php
 session_start();
 //$_SESSION['username'] = 'john'; // Temporary hardcoded
+
+// Redirect guest to login page
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+}
 ?>
 <!DOCTYPE html>
 <html>

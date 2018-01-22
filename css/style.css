@@ -14,19 +14,7 @@ html {
     margin: 0 auto;
 }
 
-.register_page {
-    width: 50%;
-    height: 50%;
-    position: relative;
-    font-family: Roboto, sans-serif;
-    background-color: rgba(163, 205, 248, 0.7);
-    border-radius: 10px;
-    left: 25%;
-    margin-top: 8%;
-    padding: 40px;
-    box-sizing: border-box;
-}
-
+.register_page,
 .login_page {
     width: 50%;
     height: 50%;
@@ -40,14 +28,6 @@ html {
     box-sizing: border-box;
 }
 
-.register_page img {
-    width: 40%;
-    height: 40%;
-    margin-top: -150px;
-    margin-bottom: 5%;
-    margin-left: 30%;
-}
-
 .login_page img {
     width: 40%;
     height: 40%;
@@ -56,11 +36,16 @@ html {
     margin-bottom: 5%;
 }
 
-.login_title p {
-    visibility: hidden;
+.register_page img {
+    width: 35%;
+    height: 35%;
+    margin-top: -150px;
+    margin-left: 32.5%;
+    margin-bottom: 5%;
 }
 
-.register_title p {
+.register_title p,
+.login_title p {
     visibility: hidden;
 }
 
@@ -196,9 +181,9 @@ html {
 
 .error {
 	text-align: left;
-    margin: -5% 0 7% 0;
+    margin: -5% 0 3% 0;
     color: #f13349;
-    padding-bottom: 2px;
+    padding-bottom: 1%;
     width: 100%;
 }
 
