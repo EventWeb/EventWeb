@@ -1,5 +1,4 @@
 <?php
-
 return [
 	'connection' => 'mysql:host=127.0.0.1',
 	'dbname' => 'eventweb',
