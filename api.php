@@ -24,7 +24,7 @@ if (isset($_POST['eventAttendees']) && $_POST['eventAttendees'] && isset($_POST[
     if ($attendees) {
 		echo json_encode($attendees);	
 	} else {
-		echo "ERROR: No such event.";
+		echo json_encode("ERROR: No such attendees/event.");
 	}
 }
 

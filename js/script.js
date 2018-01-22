@@ -80,7 +80,12 @@ if (filename === '/events.php') {
     function setEventModal(eventName, attendees) {
         var modalContent = document.getElementsByClassName('modal-content')[0];
 		modalContent.getElementsByClassName('modal-title')[0].textContent = eventName;
-		if (eventName === "ERROR:  No such event.") {
+        
+        console.log(document.getElementsByClassName('modal-content'));
+        console.log(modalContent.getElementsByClassName('modal-title')[0].textContent);
+        
+		if (attendees === "ERROR: No such attendees/event.") {
+            modalContent.getElementsByClassName('attendees-count')[0].textContent = 0;
 			return;
 		}
         modalContent.getElementsByClassName('attendees-count')[0].textContent = attendees.length;
