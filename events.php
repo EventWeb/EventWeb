@@ -14,7 +14,8 @@ try {
 // Retrieve events and their organizers
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
 	FROM event
-	INNER JOIN user ON event.user_id = user.id';
+	INNER JOIN user ON event.user_id = user.id
+	ORDER BY event.date desc';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $events = $stmt->fetchAll();

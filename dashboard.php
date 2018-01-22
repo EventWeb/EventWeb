@@ -21,7 +21,8 @@ $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
         FROM event
         INNER JOIN participation ON event.id = participation.event_id
         INNER JOIN user ON event.user_id = user.id
-        WHERE participation.user_id = (SELECT id FROM user WHERE name = :name)';
+        WHERE participation.user_id = (SELECT id FROM user WHERE name = :name)
+        ORDER BY event.date desc';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['name' => $_SESSION['username']]);
 $events = $stmt->fetchAll();   
@@ -30,7 +31,8 @@ $events = $stmt->fetchAll();
 $sql = 'SELECT event.name, event.date, event.time, user.name AS organizer
 	FROM event
 	INNER JOIN user ON event.user_id = user.id
-    WHERE user.id = (SELECT id FROM user WHERE name = :name)';
+    WHERE user.id = (SELECT id FROM user WHERE name = :name)
+    ORDER BY event.date desc';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['name' => $_SESSION['username']]);
 $myOwnEvents = $stmt->fetchAll();
