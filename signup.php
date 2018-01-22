@@ -1,5 +1,7 @@
 <?php 
     session_start();
+
+    // Connect to database
     $config = require('config.php');
     $dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
     try {
@@ -12,8 +14,8 @@
 	$username = "";
 	$email    = "";
 	$errors = array(); 
-    $_SESSION['success'] = "";
     
+    // Signup
     if (isset($_POST['reg_user'])) {
 		// receive all input values from the form
 		$username = (isset($_POST['username']) ? $_POST['username'] : null);
@@ -21,19 +23,21 @@
         $password_1 = (isset($_POST['password_1']) ? $_POST['password_1'] : null);
         $password_2 = (isset($_POST['password_2']) ? $_POST['password_2'] : null);
 
+        // retrieve email information
         $sql = "SELECT * FROM user WHERE email = '$email'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $emails = $stmt->fetchAll();
         $count_email = count($emails);
 
+        // retrieve user information 
         $sql = "SELECT * FROM user WHERE name = '$username'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
-        $count_user = count($emails);
+        $count_user = count($users);
 
-        // form validation: ensure that the form is correctly filled
+        // form validation: ensure that the form is filled
 		if (empty($username)) { 
             array_push($errors, "Username is required"); 
         }
@@ -44,21 +48,23 @@
             array_push($errors, "Password is required"); 
         }
 
-        // register user if there are no errors in the form
+        // check if the user name and email have been registered
         if (($count_email == 0)&&($count_user == 0)){
             //compare password
             if ($password_1 != $password_2) {
                 array_push($errors, "The two passwords do not match.");
             }
             else{
+                // register user if there are no errors in the form
                 if(count($errors == 0)){
-                    $password = password_hash($password_1, PASSWORD_DEFAULT);//encrypt the password before saving in the database
+                    //encrypt the password before saving in the database
+                    $password = password_hash($password_1, PASSWORD_DEFAULT);
                     $sql = "INSERT INTO user (name, password, email) 
                             VALUES('$username', '$password', '$email')";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
-                    echo "<script>window.prompt('Register Successful');</script>";
-                    $_SESSION['username'] = $username;
+
+                    //redirect to login page
                     header('location: login.php');
                 }
             }
