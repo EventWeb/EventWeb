@@ -56,7 +56,7 @@
 ?>
 
 <!DOCTYPE html>
-<html class="login">
+<html>
 <head>
 	<?php require('partials/html-head.php'); ?>
 </head>
@@ -80,7 +80,7 @@
             <input type="submit" name="login_user" value="Sign In">
         </form>  
         <div class="form_footer_reg">
-            Not registered yet? Signup <a href="signup.php">here</a>
+            <a href="forgetPassword.php">Forget Password?</a>
         </div>
     </div>
 	<?php require('partials/footer.php'); ?>

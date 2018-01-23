@@ -1,14 +1,4 @@
-html {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover
-}
-
-.login {
-    background: url(images/bg.png) no-repeat center center fixed;
-}
-
+.forgetPass,
 .loginBody {
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
@@ -19,7 +9,7 @@ html {
     width: 50%;
     height: 50%;
     position: relative;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: rgba(163, 205, 248, 0.7);
     border-radius: 10px;
     left: 25%;
@@ -107,16 +97,10 @@ html {
     transition: .5s;
 }
 
+.login_page .login_form input:focus~label,
+.login_page .login_form input:valid~label,
 .register_page .register_form input:focus~label,
 .register_page .register_form input:valid~label {
-    top: -20px;
-    left: 0;
-    color: #1178a8;
-    font-size: 15px;
-}
-
-.login_page .login_form input:focus~label,
-.login_page .login_form input:valid~label {
     top: -20px;
     left: 0;
     color: #1178a8;
@@ -166,6 +150,7 @@ html {
     margin-top: 5px;
 }
 
+.forgetContainer input[type="submit"]:hover,
 .login_page input[type="submit"]:hover {
     background: #f13349;
 }
@@ -180,7 +165,7 @@ html {
 }
 
 .error {
-	text-align: left;
+    text-align: left;
     margin: -5% 0 3% 0;
     color: #f13349;
     padding-bottom: 1%;
@@ -192,6 +177,52 @@ html {
     background: #dff0d8;
     border: 1px solid #3c763d;
     margin-bottom: 20px;
+}
+
+.forgetPass h2 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.forgetContainer {
+    width: 100%;
+    background-color: rgba(163, 205, 248, 0.7);
+    text-align: center;
+    margin-top: 50px;
+    padding: 80px;
+    height: 50%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.forgetForm input {
+    width: 60%;
+    padding: 15px 0;
+    padding-bottom: 8px;
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 25px;
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.forgetContainer input[type="submit"] {
+    background: #f16272;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 40%;
+    margin-top: 5px;
 }
 
 @media screen and (max-width: 767.5px) {
@@ -209,20 +240,17 @@ html {
         padding: 40px;
         box-sizing: border-box;
     }
-
     .register_page img,
     .login_page img {
         display: none;
     }
-
     .register_title,
     .login_title {
         margin-top: -60px;
         margin-bottom: 15%;
         text-align: center;
     }
-
-    .register_title p, 
+    .register_title p,
     .login_title p {
         visibility: visible;
         font-size: 150%;
@@ -234,5 +262,33 @@ html {
         font-weight: 800;
         color: #fff;
         height: auto;
+    }
+    .forgetContainer input[type="submit"] {
+        background: #f16272;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        height: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.2em;
+        letter-spacing: 0.05em;
+        text-align: center;
+        text-transform: uppercase;
+        transition: background 0.3s ease-in-out;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .forgetForm input {
+        width: 100%;
+        padding: 15px 0;
+        padding-bottom: 8px;
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 25px;
+        border: none;
+        letter-spacing: 1px;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
     }
 }
