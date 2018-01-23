@@ -130,4 +130,23 @@ if (filename === '/events.php') {
 	// Assign a click event listener to the wrapper of event cards
 	var eventsWrapper = document.getElementsByClassName('tab-content')[0];
 	eventsWrapper.addEventListener('click', eventWellHandler);
+} else if (filename === '/signup.php') {
+	// fix invalid email input conflict with signup form
+	$(function() {
+		$(".register_input").each(function() {
+			changeState($(this));
+		});
+
+		$(".register_input").on("focusout", function() {
+			changeState($(this));
+		});
+
+		function changeState($formControl) {
+			if ($formControl.val().length > 0) {
+				$formControl.addClass("has-value");
+			} else {
+				$formControl.removeClass("has-value");
+			}
+		}
+	});
 }

@@ -123,8 +123,21 @@ html {
     font-size: 15px;
 }
 
+.register_input:focus + label, .register_input.has-value + label {
+    top: -15px;
+    color: #2196F3;
+    font-size: 12px;
+}
+
+.register_input.has-value:not(:focus) + label {
+    top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
+}
+
 .reg_btn {
-    background-color: rgb(4, 122, 53);
+    background-color: #43A047;
     border: none;
     color: #ffffff;
     cursor: pointer;
@@ -140,7 +153,7 @@ html {
 }
 
 .reg_btn:hover {
-    background-color: rgb(1, 58, 15);
+    background-color: #2E7D32;
     color: #fff;
 }
 
@@ -192,6 +205,14 @@ html {
     background: #dff0d8;
     border: 1px solid #3c763d;
     margin-bottom: 20px;
+}
+
+.myFooter p {
+    margin-top: 10%;
+    font-family: sans-serif;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
 }
 
 @media screen and (max-width: 767.5px) {

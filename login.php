@@ -52,7 +52,7 @@
                 array_push($errors, "Wrong username/password combination");
             }
 		}
-	}
+    }
 ?>
 
 <!DOCTYPE html>
