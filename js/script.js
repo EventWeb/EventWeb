@@ -80,7 +80,12 @@ if (filename === '/events.php') {
     function setEventModal(eventName, attendees) {
         var modalContent = document.getElementsByClassName('modal-content')[0];
 		modalContent.getElementsByClassName('modal-title')[0].textContent = eventName;
-		if (eventName === "ERROR:  No such event.") {
+        
+        console.log(document.getElementsByClassName('modal-content'));
+        console.log(modalContent.getElementsByClassName('modal-title')[0].textContent);
+        
+		if (attendees === "ERROR: No such attendees/event.") {
+            modalContent.getElementsByClassName('attendees-count')[0].textContent = 0;
 			return;
 		}
         modalContent.getElementsByClassName('attendees-count')[0].textContent = attendees.length;
@@ -125,4 +130,23 @@ if (filename === '/events.php') {
 	// Assign a click event listener to the wrapper of event cards
 	var eventsWrapper = document.getElementsByClassName('tab-content')[0];
 	eventsWrapper.addEventListener('click', eventWellHandler);
+} else if (filename === '/signup.php') {
+	// fix invalid email input conflict with signup form
+	$(function() {
+		$(".register_input").each(function() {
+			changeState($(this));
+		});
+
+		$(".register_input").on("focusout", function() {
+			changeState($(this));
+		});
+
+		function changeState($formControl) {
+			if ($formControl.val().length > 0) {
+				$formControl.addClass("has-value");
+			} else {
+				$formControl.removeClass("has-value");
+			}
+		}
+	});
 }

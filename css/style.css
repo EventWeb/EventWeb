@@ -108,7 +108,7 @@
 }
 
 .reg_btn {
-    background-color: rgb(4, 122, 53);
+    background-color: #43A047;
     border: none;
     color: #ffffff;
     cursor: pointer;
@@ -124,7 +124,7 @@
 }
 
 .reg_btn:hover {
-    background-color: rgb(1, 58, 15);
+    background-color: #2E7D32;
     color: #fff;
 }
 

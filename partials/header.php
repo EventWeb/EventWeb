@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/home.php">EventWeb</a>
@@ -16,6 +16,7 @@
 				<?php if(isset($_SESSION['username'])): ?>
 					<li><a href="/create-event.php">Create Event</a></li>
 					<li><a href="/dashboard.php">Dashboard</a></li>
+					<li><a href="/profile.php">My Profile</a><li>
 				<?php endif; ?>
 				<?php if(isset($_SESSION['username'])): ?>
 					<li><a class="logout" href="/logout.php">Logout</a></li>

@@ -91,19 +91,19 @@
             <?php include('errors.php');?>
             <!-- display ends-->
             <div class="register_form">
-                <input type="text" name="username" required autocomplete="off" autofocus>
+                <input class="register_input" type="text" name="username" pattern="[^\s]*" title="Username cannot contain space" required autocomplete="off" autofocus>
                 <label>Username</label>
             </div>
             <div class="register_form">
-                <input type="email" name="email"  required autocomplete="off">
+                <input class="register_input" type="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must follow characters@characters.domain. Ex. sample@mail.com" required autocomplete="off">
                 <label>E-mail</label>
             </div>
             <div class="register_form">
-                <input type="password" name="password_1" required >
+                <input class="register_input" type="password" name="password_1" pattern=".{6,}" title="Password need to be 6 or more characters" required >
                 <label>Password</label>
             </div>
             <div class="register_form">
-                <input type="password" name="password_2" required>
+                <input class="register_input" type="password" name="password_2" pattern=".{6,}" title="Password need to be 6 or more characters" required>
                 <label>Confirm Password</label>
             </div>
             <div class="register_form_btn">
@@ -115,6 +115,6 @@
         </div>
     </div>
 	<?php require('partials/footer.php'); ?>
-	<script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
