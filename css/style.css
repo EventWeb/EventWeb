@@ -107,6 +107,19 @@
     font-size: 15px;
 }
 
+register_input:focus + label, .register_input.has-value + label {
+    top: -15px;
+    color: #2196F3;
+    font-size: 12px;
+}
+
+.register_input.has-value:not(:focus) + label {
+   top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
+}
+
 .reg_btn {
     background-color: #43A047;
     border: none;
@@ -223,6 +236,14 @@
     transition: background 0.3s ease-in-out;
     width: 40%;
     margin-top: 5px;
+}
+
+.myFooter p {
+    margin-top: 10%;
+    font-family: sans-serif;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
 }
 
 @media screen and (max-width: 767.5px) {
