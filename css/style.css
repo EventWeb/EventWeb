@@ -1,6 +1,13 @@
+.myFooter p {
+    margin-top: 10%;
+    font-family: sans-serif;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
+}
+
 .forgetPass,
 .loginBody {
-    font-family: 'Roboto', sans-serif;
     margin: 0 auto;
 }
 
@@ -128,12 +135,6 @@
     color: #fff;
 }
 
-.form_footer_reg {
-    font-size: 1em;
-    padding: 1em 0;
-    text-align: center;
-}
-
 .login_page input[type="submit"] {
     background: #f16272;
     border: none;
@@ -153,6 +154,12 @@
 .forgetContainer input[type="submit"]:hover,
 .login_page input[type="submit"]:hover {
     background: #f13349;
+}
+
+.form_footer_reg {
+    font-size: 1em;
+    padding: 1em 0;
+    text-align: center;
 }
 
 .form_footer_reg a {
@@ -225,6 +232,40 @@
     margin-top: 5px;
 }
 
+.topBg img {
+    width: 100%;
+    height: 470px;
+    background: #afd8ec;
+    margin-top: -17px;
+}
+
+.middleBg {
+    margin-bottom: 20px;
+}
+
+.middleBg h1 {
+    font-size: 380%;
+    margin-top: 25px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+}
+
+.profilePic {
+    width: 220px;
+    height: 220px;
+    left: 70%;
+    margin-top: -200px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    position: relative;
+    background: rgb(248, 165, 165);
+}
+
+.othertop {
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 767.5px) {
     .register_page,
     .login_page {
@@ -290,5 +331,25 @@
         border-bottom: 1px solid #fff;
         outline: none;
         background: transparent;
+    }
+    .profilePic {
+        width: 220px;
+        height: 220px;
+        left: 260px;
+        margin-top: -300px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        position: relative;
+        background: rgb(253, 199, 199);
+    }
+    .middleBg {
+        margin-bottom: 100px;
+    }
+    .middleBg h1 {
+        font-size: 380%;
+        margin-top: 120px;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-weight: bold;
     }
 }
