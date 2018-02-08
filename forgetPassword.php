@@ -57,25 +57,30 @@
                 <title>HTML email</title>
                 </head>
                 <body>
+                <p>Hi $thisusername, </p>
+                <p>This email contains your username and password.  Please keep this in a safe place and do not share your password with anyone. </p>
                 <p>Username: $thisusername</p>
                 <p>Email: $thisemail</p>
                 <p>New Password: $newpassword</p>
+                <p>You can login to EventWeb at <a href=\"http://localhost:8000/login.php\">here</a></p>
+                <p>If you would like to change your password to something easier to remember, you can do so after you log in.  Just click on \"My Profile\" and select \"Change Your Password\".</p>
+                <p>Thanks for using EventWeb!</p>
                 </body>
                 </html>
             ";
 
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: admin@eventweb.com";
+            $headers .= "From: donotreply@eventweb.com";
             mail($to,$subject,$message,$headers);
 
             // update in database
-            $password = password_hash($newpassword, PASSWORD_DEFAULT);
-            $sql = "UPDATE user
-                    SET password = '$password'
-                    WHERE email = '$thisemail'";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
+            // $password = password_hash($newpassword, PASSWORD_DEFAULT);
+            // $sql = "UPDATE user
+            //         SET passsword = '$password'
+            //         WHERE email = '$thisemail'";
+            // $stmt = $pdo->prepare($sql);
+            // $stmt->execute();
 
             //redirect to new page
             //header("location: changepwsuccess.php");
@@ -95,11 +100,15 @@
 
     <div class="forgetContainer">
         <form method="post">
-            <!-- display validation message-->
-            <?php include('errors.php');?>
-            <!-- display ends-->
+            <?php  if (count($errors) > 0) : ?>
+                <div class="error">
+                    <?php foreach ($errors as $error) : ?>
+                        <p><?php echo $error ?></p>
+                    <?php endforeach ?>
+                </div>
+            <?php  endif ?>
             <div class="forgetForm">
-                <input type="email" name="email" autocomplete="off" autofocus>
+                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required autocomplete="off" autofocus>
             </div>
             <input type="submit" name="submitEmail" value="Submit">
         </form>  
