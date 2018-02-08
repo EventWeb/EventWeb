@@ -1,0 +1,85 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+p {
+	text-align: left;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#team {
+  padding: 2em 1em 1em;
+}
+
+.card-content {
+  padding: 1.5em;
+}
+
+@media screen and (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(10px, auto) 1fr 1fr minmax(10px, auto);
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas:
+		". kirthi john ."
+		". alfred gan ."
+		". hafridz . ."
+  }
+
+	#team .card {
+	  list-style: none;
+	  margin: 10px;
+	  padding: 10px;
+	}
+
+	.kirthi{
+		grid-area: kirthi;
+	}
+
+	.john{
+		grid-area: john;
+	}
+
+	.hafridz{
+		grid-area: hafridz;
+	}
+
+	.alfred{
+		grid-area: alfred;
+	}
+
+	.gan{
+		grid-area: gan;
+	}
+
+
+}
+
+/* This part is so that the pictures are not too big */
+@media screen and (min-width: 1280px) {
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(50px, auto) 600px 600px minmax(50px, auto);
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas:
+		". kirthi john ."
+		". alfred gan ."
+		". hafridz . ."
+  }
+
+	img {
+	  display: block;
+	  width: 566px;
+	  height: auto;
+	}
+
+	.card-content{
+		width: 566px;
+	}
+}
