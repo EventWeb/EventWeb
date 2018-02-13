@@ -11,8 +11,9 @@
     }
 
     // variable declaration
-	$email    = "";
-	$errors = array(); 
+	$email = "";
+    $errors = array(); 
+    $success = array();
 
     if (isset($_POST['submitEmail'])){
         $email = (isset($_POST['email']) ? $_POST['email'] : null);
@@ -62,7 +63,7 @@
                 <p>Username: $thisusername</p>
                 <p>Email: $thisemail</p>
                 <p>New Password: $newpassword</p>
-                <p>You can login to EventWeb at <a href=\"http://localhost:8000/login.php\">here</a></p>
+                <p>You can login to EventWeb at <a href=\"http://localhost:8000/login.php\">here</a>.</p>
                 <p>If you would like to change your password to something easier to remember, you can do so after you log in.  Just click on \"My Profile\" and select \"Change Your Password\".</p>
                 <p>Thanks for using EventWeb!</p>
                 </body>
@@ -72,18 +73,21 @@
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: donotreply@eventweb.com";
-            mail($to,$subject,$message,$headers);
+            if(!mail($to,$subject,$message,$headers)){
+                array_push($errors, "Sorry, you need to install SMTP server first. Download smtp4dev-2.0.10.msi at <a href='https://github.com/rnwood/smtp4dev/releases/tag/v2.0.10'> here </a> and run." );
+            } else{
+                // update in database
+                $password = password_hash($newpassword, PASSWORD_DEFAULT);
+                $sql = "UPDATE user
+                        SET password = '$password'
+                        WHERE email = '$thisemail'";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
 
-            // update in database
-            // $password = password_hash($newpassword, PASSWORD_DEFAULT);
-            // $sql = "UPDATE user
-            //         SET passsword = '$password'
-            //         WHERE email = '$thisemail'";
-            // $stmt = $pdo->prepare($sql);
-            // $stmt->execute();
+                array_push($success, "Password is changed successfully. Please click <a class=\"form_footer_reg\" href=\"/login.php\"> here </a> to login with new password.");
+            }
 
-            //redirect to new page
-            //header("location: changepwsuccess.php");
+            
         }
     }
 ?>
@@ -100,15 +104,26 @@
 
     <div class="forgetContainer">
         <form method="post">
+            <!-- display validation message -->
             <?php  if (count($errors) > 0) : ?>
-                <div class="error">
+                <div class="error-fp">
                     <?php foreach ($errors as $error) : ?>
-                        <p><?php echo $error ?></p>
+                        <p><?php echo $error; ?></p>
                     <?php endforeach ?>
                 </div>
             <?php  endif ?>
+
+            <!-- display validation message -->
+            <?php  if (count($success) > 0) : ?>
+                <div class="success-fp">
+                    <?php foreach ($success as $sc) : ?>
+                        <p><?php echo $sc; ?></p>
+                    <?php endforeach ?>
+                </div>
+            <?php  endif ?>
+
             <div class="forgetForm">
-                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required autocomplete="off" autofocus>
+                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must follow characters@characters.domain. Ex. sample@mail.com" required autocomplete="off" autofocus>
             </div>
             <input type="submit" name="submitEmail" value="Submit">
         </form>  

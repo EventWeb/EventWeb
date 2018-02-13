@@ -107,7 +107,7 @@
                 <label>Confirm Password</label>
             </div>
             <div class="register_form_btn">
-                <input type="submit" class = "reg_btn" name="reg_user" value="register"></button>
+                <input type="submit" class = "reg_btn" name="reg_user" value="register">
             </div>
         </form>
         <div class="form_footer_reg">

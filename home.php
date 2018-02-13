@@ -43,7 +43,7 @@
 					<span class="glyphicon glyphicon-calendar glyphicon-size"></span>
 					<h4>Attend Events</h4>
 				</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+				<p>Check Events that interest you most and Grab the Chance to attend.</p>
 			</div>
 		</div>
 
