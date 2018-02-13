@@ -1,28 +1,75 @@
 <?php
-session_start();
+	session_start();
 
-// Redirect guest to login page
-if (!isset($_SESSION['username'])) {
-    header("location: login.php");
-}
+	// Redirect guest to login page
+	if (!isset($_SESSION['username'])) {
+		header("location: login.php");
+	}
 
-// Connect to database
-$config = require('config.php');
-$dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
-try {
-    $pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
+	// Connect to database
+	$config = require('config.php');
+	$dsn = $config['connection'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
+	try {
+		$pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
+	} catch (PDOException $e) {
+		die($e->getMessage());
+	}
 
-// Retrieve user details 
-$sql = 'SELECT user.name, user.email
-	FROM user
-	WHERE user.id = (SELECT id FROM user WHERE name = :name)';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['name' => $_SESSION['username']]);
-$user = $stmt->fetchAll();
-$thisuser = $user[0]['name'];
+	// Retrieve user details 
+	$sql = 'SELECT *
+		FROM user
+		WHERE user.id = (SELECT id FROM user WHERE name = :name)';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(['name' => $_SESSION['username']]);
+	$user = $stmt->fetchAll();
+	$thisuser = $user[0]['name'];
+	$thisname = $user[0]['full_name'];
+	$thisemail = $user[0]['email'];
+	$thisdob = $user[0]['dob'];
+	$thisgender = $user[0]['gender'];
+	$thisoccupation = $user[0]['occupation'];
+	$thisphone = $user[0]['phone'];
+	$thisdescription = $user[0]['description'];
+
+	$success = array(); 
+
+	if (isset($_POST['update'])){
+		$new_name = (isset($_POST['full_name']) ? $_POST['full_name'] : null);
+		$new_dob = (isset($_POST['dob']) ? $_POST['dob'] : null);
+		if($thisgender==null){
+			$new_gender = (isset($_POST['Gender']) ? $_POST['Gender'] : null);
+		}
+		$new_phone = (isset($_POST['phone_number']) ? $_POST['phone_number'] : null);
+		$new_occupation = (isset($_POST['Occupation']) ? $_POST['Occupation'] : null);
+		$new_description = (isset($_POST['description']) ? $_POST['description'] : null);
+
+		if($thisgender==null){
+			$sql = "UPDATE user
+				SET full_name = '$new_name',
+				dob = '$new_dob',
+				gender = '$new_gender',
+				occupation = '$new_occupation',
+				phone = '$new_phone',
+				description = '$new_description'
+				WHERE name='$thisuser'";
+		}else{
+			$sql = "UPDATE user
+				SET full_name = '$new_name',
+				dob = '$new_dob',
+				occupation = '$new_occupation',
+				phone = '$new_phone',
+				description = '$new_description'
+				WHERE name='$thisuser'";
+		}
+		
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		
+		array_push($success, "The profile is updated successfully.");
+
+		// refresh
+		header('location: profile.php'); 
+	}
 ?>
 
 <!DOCTYPE html>
@@ -37,30 +84,27 @@ $thisuser = $user[0]['name'];
 	<?php require('partials/header.php'); ?>
 		<div class="topBg">
 			<img src="images/bg.png" alt="background">
+			<h1> @<?php echo $thisuser ?> </h1>
 		</div>
 
 		<div class="middleBg">
-			<h1> @<?php echo $thisuser ?> </h1>
-				<form method="GET" action=" " >
-					<div class="profilePic">
-						
-					</div>
-				</form>
+			<!-- <h1> @<?php echo $thisuser ?> </h1> -->
 		</div>
+
 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="POST">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-md-5 control-label" for="Name (Full name)">Name (Full name)</label>  
+								<label class="col-md-5 control-label" for="full_name">Name (Full name)</label>  
 								<div class="col-md-7">
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-user"></i>
 										</div>
-										<input id="Name (Full name)" name="Name (Full name)" type="text" placeholder="Name (Full name)" class="form-control input-md">
+										<input id="full_name" name="full_name" type="text" placeholder="Name (Full name)" class="form-control input-md" value="<?php echo $thisname?>">
 									</div>	
 								</div>
 							</div>
@@ -69,45 +113,66 @@ $thisuser = $user[0]['name'];
 							<div class="form-group">
 								<label class="col-md-5 control-label" for="Upload photo">Upload photo</label>
 								<div class="col-md-7">
-									<input id="Upload photo" name="Upload photo" class="input-file" type="file">
+									<input id="Upload photo" name="Upload photo" class="input-file profile-padding" type="file">	
 								</div>
 							</div>
 							<br>
 						<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-5 control-label" for="Date Of Birth">Date Of Birth</label>  
+								<label class="col-md-5 control-label" for="Change Password">Change Your Password</label>
+								<div class="col-md-7">
+									<div class="profile-padding">
+										Click <a href="/changePassword.php">here </a> to change password.
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="form-group">
+								<label class="col-md-5 control-label" for="dob">Date Of Birth</label>  
 								<div class="col-md-7">
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-birthday-cake"></i>
 										</div>
-										<input id="Date Of Birth" name="Date Of Birth" type="text" placeholder="Date Of Birth" class="form-control input-md">
+										<input id="dob" name="dob" type="text" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="Date Of Birth (YYYY-MM-DD) Eg. 1998-12-25" class="form-control input-md" value="<?php echo $thisdob?>">
 									</div>				
 								</div>
 							</div>
 							<br>
-							<!-- Multiple Radios (inline) -->
 							<div class="form-group">
 								<label class="col-md-5 control-label" for="Gender">Gender</label>
 								<div class="col-md-7"> 
-									<label class="radio-inline" for="Gender-0">
-									<input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">
-									Male
-									</label> 
-
-									<label class="radio-inline" for="Gender-1">
-									<input type="radio" name="Gender" id="Gender-1" value="2">
-									Female
-									</label> 
-
-									<label class="radio-inline" for="Gender-2">
-									<input type="radio" name="Gender" id="Gender-2" value="3">
-									Other
-									</label>
-									
+									<?php  if ($thisgender==null) : ?>
+										<select class="form-control" id="sel1" name="Gender">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+											<option value="Other">Other</option>
+										</select>
+									<?php  endif ?>
+									<?php  if ($thisgender!=null) : ?>
+										<div class="input-group">
+											<?php  if ($thisgender=="Male") : ?>
+												<div class="input-group-addon">
+													<i class="fa fa-male"></i>					
+												</div>
+											<?php  endif ?>
+											<?php  if ($thisgender=="Female") : ?>
+												<div class="input-group-addon">
+													<i class="fa fa-female"></i>					
+												</div>
+											<?php  endif ?>
+											<?php  if ($thisgender=="Other") : ?>
+												<div class="input-group-addon">
+													<i class="fa fa-genderless"></i>					
+												</div>
+											<?php  endif ?>
+											<input id="gender" name="Gender_edit" type="text" class="form-control input-md" value="<?php echo $thisgender?>" disabled>
+										</div>
+									<?php  endif ?>
 								</div>
 							</div>
 							<br>
+
 						<!-- Text input-->
 							<div class="form-group">
 								<label class="col-md-5 control-label" for="Occupation">Occupation</label>  
@@ -116,28 +181,28 @@ $thisuser = $user[0]['name'];
 										<div class="input-group-addon">
 											<i class="fa fa-briefcase"></i>					
 										</div>
-										<input id="Occupation" name="Occupation" type="text" placeholder="Occupation" class="form-control input-md">
+										<input id="Occupation" name="Occupation" type="text" placeholder="Occupation" class="form-control input-md" value="<?php echo $thisoccupation?>">
 									</div>
 								</div>
 							</div>
 							<br>
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-5 control-label" for="Phone number ">Phone number </label>  
+								<label class="col-md-5 control-label" for="phone_number">Phone number </label>  
 								<div class="col-md-7">
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="fa fa-phone"></i>				
 										</div>
-										<input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md">
+										<input id="phone_number" name="phone_number" type="text" placeholder="Phone number (without '-') Eg 0127786767" class="form-control input-md" value="<?php echo $thisphone?>">
 									</div>
 
-									<div class="input-group othertop">
+									<!-- <div class="input-group othertop">
 										<div class="input-group-addon">
 											<i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>	
 										</div>
-										<input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md">
-									</div>		
+										<input id="phone_number " name="Secondary Phone Number " type="text" placeholder=" Secondary Phone number " class="form-control input-md">
+									</div>		 -->
 								</div>
 							</div>
 							<br>
@@ -149,23 +214,24 @@ $thisuser = $user[0]['name'];
 											<div class="input-group-addon">
 												<i class="fa fa-envelope-o"></i>									
 											</div>
-											<input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md">							
+											<input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $thisemail?>" disabled>							
 										</div>				
 									</div>
 							</div>
 							<br>
 							<!-- Textarea -->
 							<div class="form-group">
-								<label class="col-md-5 control-label" for="Overview (max 200 words)">Description (max 200 words)</label>
+								<label class="col-md-5 control-label" for="description">Describe yourself (max 200 words)</label>
 								<div class="col-md-7">                     
-									<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)" placeholder="Description"></textarea>
+									<textarea class="form-control" rows="10"  id="description" name="description" 
+									placeholder="I am an enthusiastic person who is looking forward to provide the best event experience." ><?php echo $thisdescription?></textarea>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-md-5 control-label" ></label>  
 								<div class="col-md-7">
-									<a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Update</a>
+									<input type="submit" name="update" class="btn btn-success" value="Update">
 								</div>
 							</div>			
 						</fieldset>

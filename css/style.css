@@ -6,6 +6,7 @@
     padding: 10px;
 }
 
+.changePass,
 .forgetPass,
 .loginBody {
     margin: 0 auto;
@@ -164,6 +165,7 @@ register_input:focus + label, .register_input.has-value + label {
     margin-top: 5px;
 }
 
+.changeContainer input[type="submit"]:hover,
 .forgetContainer input[type="submit"]:hover,
 .login_page input[type="submit"]:hover {
     background: #f13349;
@@ -192,6 +194,20 @@ register_input:focus + label, .register_input.has-value + label {
     width: 100%;
 }
 
+.error-fp {
+    text-align: center;
+    margin: -5% 0 3% 0;
+    color: #f13349;
+    width: 100%;
+}
+
+.success-fp {
+    text-align: center;
+    margin: -5% 0 3% 0;
+    color: #3c763d;
+    width: 100%;
+}
+
 .custome_success {
     color: #3c763d;
     background: #dff0d8;
@@ -199,11 +215,13 @@ register_input:focus + label, .register_input.has-value + label {
     margin-bottom: 20px;
 }
 
+.changePass h2,
 .forgetPass h2 {
     text-align: center;
     margin-top: 50px;
 }
 
+.changeContainer,
 .forgetContainer {
     width: 100%;
     background-color: rgba(163, 205, 248, 0.7);
@@ -215,6 +233,7 @@ register_input:focus + label, .register_input.has-value + label {
     box-sizing: border-box;
 }
 
+.changeForm input,
 .forgetForm input {
     width: 60%;
     padding: 15px 0;
@@ -229,6 +248,7 @@ register_input:focus + label, .register_input.has-value + label {
     background: transparent;
 }
 
+.changeContainer input[type="submit"],
 .forgetContainer input[type="submit"] {
     background: #f16272;
     border: none;
@@ -253,38 +273,50 @@ register_input:focus + label, .register_input.has-value + label {
     padding: 10px;
 }
 
+.topBg {
+    position: relative;
+}
+
 .topBg img {
     width: 100%;
-    height: 470px;
-    background: #afd8ec;
+    height: 400px;
     margin-top: -17px;
 }
 
 .middleBg {
-    margin-bottom: 20px;
+    margin-bottom: 5%;
 }
 
-.middleBg h1 {
+.topBg h1 {
     font-size: 380%;
-    margin-top: 25px;
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
-}
-
-.profilePic {
-    width: 220px;
-    height: 220px;
-    left: 70%;
-    margin-top: -200px;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    position: relative;
-    background: rgb(248, 165, 165);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    color: white;
 }
 
 .othertop {
     margin-top: 10px;
+}
+
+.profile-padding{
+    padding-top: 1.5%;
+}
+
+.unmask{
+    background-color: rgba(163, 205, 248, 0.7);
+    padding: 0;
+    border: none;
+    background: none;
+} 
+
+.glyphicon.glyphicon-eye-open,
+.glyphicon.glyphicon-eye-close {
+    font-size: 150%;
 }
 
 @media screen and (max-width: 767.5px) {
@@ -325,6 +357,7 @@ register_input:focus + label, .register_input.has-value + label {
         color: #fff;
         height: auto;
     }
+    .changeContainer input[type="submit"],
     .forgetContainer input[type="submit"] {
         background: #f16272;
         border: none;
@@ -340,8 +373,9 @@ register_input:focus + label, .register_input.has-value + label {
         width: 100%;
         margin-top: 5px;
     }
+    .changeForm input,
     .forgetForm input {
-        width: 100%;
+        width: 75%;
         padding: 15px 0;
         padding-bottom: 8px;
         font-size: 18px;
@@ -353,24 +387,32 @@ register_input:focus + label, .register_input.has-value + label {
         outline: none;
         background: transparent;
     }
-    .profilePic {
-        width: 220px;
-        height: 220px;
-        left: 260px;
-        margin-top: -300px;
-        border: 2px solid #fff;
-        border-radius: 5px;
-        position: relative;
-        background: rgb(253, 199, 199);
-    }
+    .unmask{
+        background-color: rgba(163, 205, 248, 0.7);
+        padding: 0;
+        border: none;
+        background: none;
+    } 
     .middleBg {
-        margin-bottom: 100px;
+        margin-bottom: 5%;
     }
-    .middleBg h1 {
-        font-size: 380%;
-        margin-top: 120px;
+    .topBg {
+        position: relative;
+    }
+    .topBg img {
+        width: 100%;
+        height: 200px;
+        margin-top: -17px;
+    }
+    .topBg h1 {
+        font-size: 200%;
         text-align: center;
         font-family: 'Playfair Display', serif;
         font-weight: bold;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        color: white;
     }
 }
