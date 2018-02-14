@@ -4,4 +4,422 @@ body {
 
 .glyphicon-size {
 	font-size: 3em;
+
+.myFooter p {
+    margin-top: 10%;
+    font-family: sans-serif;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
+}
+
+.changePass,
+.forgetPass,
+.loginBody {
+    margin: 0 auto;
+}
+
+.register_page,
+.login_page {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(163, 205, 248, 0.7);
+    border-radius: 10px;
+    left: 25%;
+    margin-top: 8%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.login_page img {
+    width: 40%;
+    height: 40%;
+    margin-top: -150px;
+    margin-left: 30%;
+    margin-bottom: 5%;
+}
+
+.register_page img {
+    width: 35%;
+    height: 35%;
+    margin-top: -150px;
+    margin-left: 32.5%;
+    margin-bottom: 5%;
+}
+
+.register_title p,
+.login_title p {
+    visibility: hidden;
+}
+
+.register_page .register_form {
+    position: relative;
+}
+
+.register_page .register_form input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login_page .login_form {
+    position: relative;
+    margin-top: -20px;
+}
+
+.login_page .login_form input {
+    width: 100%;
+    padding: 15px 0;
+    padding-bottom: 8px;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.register_page .register_form label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login_page .login_form label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px 0;
+    font-size: 22px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login_page .login_form input:focus~label,
+.login_page .login_form input:valid~label,
+.register_page .register_form input:focus~label,
+.register_page .register_form input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
+}
+
+register_input:focus + label, .register_input.has-value + label {
+    top: -15px;
+    color: #2196F3;
+    font-size: 12px;
+}
+
+.register_input.has-value:not(:focus) + label {
+   top: -20px;
+    left: 0;
+    color: #1178a8;
+    font-size: 15px;
+}
+
+.reg_btn {
+    background-color: #43A047;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.reg_btn:hover {
+    background-color: #2E7D32;
+    color: #fff;
+}
+
+.login_page input[type="submit"] {
+    background: #f16272;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.changeContainer input[type="submit"]:hover,
+.forgetContainer input[type="submit"]:hover,
+.login_page input[type="submit"]:hover {
+    background: #f13349;
+}
+
+.form_footer_reg {
+    font-size: 1em;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.form_footer_reg a {
+    text-decoration: none;
+    transition: border-color 0.3s;
+}
+
+.form_footer_reg a:hover {
+    border-bottom: 1px dotted #8c8c8c;
+}
+
+.error {
+    text-align: left;
+    margin: -5% 0 3% 0;
+    color: #f13349;
+    padding-bottom: 1%;
+    width: 100%;
+}
+
+.error-fp {
+    text-align: center;
+    margin: -5% 0 3% 0;
+    color: #f13349;
+    width: 100%;
+}
+
+.success-fp {
+    text-align: center;
+    margin: -5% 0 3% 0;
+    color: #3c763d;
+    width: 100%;
+}
+
+.custome_success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+}
+
+.changePass h2,
+.forgetPass h2 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.changeContainer,
+.forgetContainer {
+    width: 100%;
+    background-color: rgba(163, 205, 248, 0.7);
+    text-align: center;
+    margin-top: 50px;
+    padding: 80px;
+    height: 50%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.changeForm input,
+.forgetForm input {
+    width: 60%;
+    padding: 15px 0;
+    padding-bottom: 8px;
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 25px;
+    border: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.changeContainer input[type="submit"],
+.forgetContainer input[type="submit"] {
+    background: #f16272;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 40%;
+    margin-top: 5px;
+}
+
+.myFooter p {
+    margin-top: 10%;
+    font-family: sans-serif;
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
+}
+
+.topBg {
+    position: relative;
+}
+
+.topBg img {
+    width: 100%;
+    height: 400px;
+    margin-top: -17px;
+}
+
+.middleBg {
+    margin-bottom: 5%;
+}
+
+.topBg h1 {
+    font-size: 380%;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    color: white;
+}
+
+.othertop {
+    margin-top: 10px;
+}
+
+.profile-padding{
+    padding-top: 1.5%;
+}
+
+.unmask{
+    background-color: rgba(163, 205, 248, 0.7);
+    padding: 0;
+    border: none;
+    background: none;
+} 
+
+.glyphicon.glyphicon-eye-open,
+.glyphicon.glyphicon-eye-close {
+    font-size: 150%;
+}
+
+@media screen and (max-width: 767.5px) {
+    .register_page,
+    .login_page {
+        width: 70%;
+        height: 50%;
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        background-color: rgba(163, 205, 248, 0.7);
+        border-radius: 10px;
+        left: 15%;
+        margin-top: 8%;
+        margin-bottom: 5%;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+    .register_page img,
+    .login_page img {
+        display: none;
+    }
+    .register_title,
+    .login_title {
+        margin-top: -60px;
+        margin-bottom: 15%;
+        text-align: center;
+    }
+    .register_title p,
+    .login_title p {
+        visibility: visible;
+        font-size: 150%;
+        font-family: 'Raleway', sans-serif;
+        background: rgb(55, 55, 107);
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: 800;
+        color: #fff;
+        height: auto;
+    }
+    .changeContainer input[type="submit"],
+    .forgetContainer input[type="submit"] {
+        background: #f16272;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        height: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.2em;
+        letter-spacing: 0.05em;
+        text-align: center;
+        text-transform: uppercase;
+        transition: background 0.3s ease-in-out;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .changeForm input,
+    .forgetForm input {
+        width: 75%;
+        padding: 15px 0;
+        padding-bottom: 8px;
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 25px;
+        border: none;
+        letter-spacing: 1px;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+    }
+    .unmask{
+        background-color: rgba(163, 205, 248, 0.7);
+        padding: 0;
+        border: none;
+        background: none;
+    } 
+    .middleBg {
+        margin-bottom: 5%;
+    }
+    .topBg {
+        position: relative;
+    }
+    .topBg img {
+        width: 100%;
+        height: 200px;
+        margin-top: -17px;
+    }
+    .topBg h1 {
+        font-size: 200%;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        color: white;
+    }
 }

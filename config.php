@@ -1,5 +1,4 @@
 <?php
-
 return [
 	'connection' => 'mysql:host=127.0.0.1',
 	'dbname' => 'eventweb',
@@ -11,3 +10,4 @@ return [
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 	]
 ];
+?>
