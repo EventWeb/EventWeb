@@ -39,11 +39,11 @@
 				<p>Create Events and Announce Them to the World</p>
 			</div>
 			<div class="feat-det3">
-				<a href="/events.php">
+				<a href="/attend-event.php">
 					<span class="glyphicon glyphicon-calendar glyphicon-size"></span>
 					<h4>Attend Events</h4>
 				</a>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+				<p>Attend Events with Overwhelming Crowd Nearest to You</p>
 			</div>
 		</div>
 
