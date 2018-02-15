@@ -1,6 +1,6 @@
 # EventWeb
 ## Installing SMTP Server
-1. Go to [here](https://github.com/rnwood/smtp4dev/releases/tag/v2.0.10.)
+1. Go to [here](https://github.com/rnwood/smtp4dev/releases/tag/v2.0.10)
 2. Download smtp4dev-2.0.10.msi and run.
 ## Running locally
 1. In command line, run ```php -S localhost:8000```.
