@@ -109,14 +109,6 @@
 								</div>
 							</div>
 							<br>
-						<!-- File Button --> 
-							<div class="form-group">
-								<label class="col-md-5 control-label" for="Upload photo">Upload photo</label>
-								<div class="col-md-7">
-									<input id="Upload photo" name="Upload photo" class="input-file profile-padding" type="file">	
-								</div>
-							</div>
-							<br>
 						<!-- Text input-->
 							<div class="form-group">
 								<label class="col-md-5 control-label" for="Change Password">Change Your Password</label>
