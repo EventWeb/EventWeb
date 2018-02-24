@@ -1,4 +1,4 @@
-.myFooter p {
+    .myFooter p {
     margin-top: 10%;
     font-family: sans-serif;
     background-color: #F1F1F1;
@@ -352,4 +352,9 @@
         font-family: 'Playfair Display', serif;
         font-weight: bold;
     }
-}
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    .glyphicon-size {
+        font-size: 3em;
+    }
